@@ -1,20 +1,30 @@
-var lengthOfRectangles = [100, 500, 1000, 200, 500, 400, 50, 750, 1000, 650, 300, 100, 500, 900, 100];
+function generate_sizes() {
+    var sizes = [100, 300, 500, 1000, 500, 300, 300, 200, 100, 200, 300, 1000, 500, 200, 100];
+    var sum = sizes.reduce(function (a, b) { return a + b; }, 0);
+    console.log(sum, width);
+    return sizes.map(function (a) { return a / sum * width; });
+}
+var lengthOfRectangles;
 function setup() {
     p6_CreateCanvas();
+    lengthOfRectangles = generate_sizes();
 }
 function lineOfRectangles(y) {
-    for (var i = 0; i < 14; ++i) {
-        rect(i * width / 14, y, lengthOfRectangles[i] / 14, width / 14);
+    var x = 0;
+    for (var i = 0; i < lengthOfRectangles.length; ++i) {
+        rect(x, y, lengthOfRectangles[i], width / lengthOfRectangles.length);
+        x += lengthOfRectangles[i];
     }
 }
 function draw() {
     background(200);
-    for (var i = 0; i < 14; ++i) {
-        lineOfRectangles(i * height / 14);
+    for (var i = 0; i < lengthOfRectangles.length; ++i) {
+        lineOfRectangles(i * height / lengthOfRectangles.length);
     }
 }
 function windowResized() {
     p6_ResizeCanvas();
+    lengthOfRectangles = generate_sizes();
 }
 var __ASPECT_RATIO = 1;
 var __MARGIN_SIZE = 25;
