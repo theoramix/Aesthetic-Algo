@@ -1,15 +1,10 @@
-function generate_sizes() {
-    var sizes = [10, 50, 100];
-    var sum = sizes.reduce(function (a, b) { return a + b; }, 0);
-    return sizes.map(function (a) { return a / sum * width; });
-}
-var lengthOfRectangles = generate_sizes();
+var lengthOfRectangles = [100, 500, 1000, 200, 500, 400, 50, 750, 1000, 650, 300, 100, 500, 900, 100];
 function setup() {
     p6_CreateCanvas();
 }
 function lineOfRectangles(y) {
     for (var i = 0; i < 14; ++i) {
-        rect(i * width / 14, y, width / 14, lengthOfRectangles[i]);
+        rect(i * width / 14, y, lengthOfRectangles[i] / 14, width / 14);
     }
 }
 function draw() {

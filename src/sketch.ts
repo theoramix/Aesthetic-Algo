@@ -6,15 +6,11 @@ const gui = new dat.GUI()
 const params = {
     Download_Image: () => save(),
 }
-gui.add(params, "Download_Image") */
+gui.add(params, "Download_Image") 
+*/
 
-function generate_sizes() {
-	const sizes = [10, 50, 100]
-	const sum = sizes.reduce((a, b) => a + b, 0) // calcule la somme de tous les éléments du tableau
-	return sizes.map(a => a / sum * width) // normalisation : on divise chaque élément par sum et on le multiplie par width
-}
+const lengthOfRectangles = [100,500,1000,200,500,400,50,750,1000,650,300,100,500,900,100];
 
-const lengthOfRectangles = generate_sizes()
 // -------------------
 //       Drawing
 // -------------------
@@ -23,9 +19,9 @@ function setup() {
 }
 
 function lineOfRectangles(y) {
-	for (let i = 0; i < 14; ++i) {
-		rect(i * width/14, y, width/14, lengthOfRectangles[i]) //Gère les dimensions de chaque rectangle
-	}
+    for (let i = 0; i < 14; ++i) {
+        rect(i * width/14, y, lengthOfRectangles[i]/14, width/14);
+    }
 }
 
 // -------------------
