@@ -16,7 +16,7 @@ function generate_sizes() {
 }
 
 let lengthOfRectangles
-//const lesCouleurs...
+const colors = ['#B3F734','#6CE03A','#23E047','#0CF77E','#00E0AB','#0CECF7','#350CF7','#B500E0','#F70C3F','#F04601','#E03200','#F76E0C','#F09100','#F7BA0C','#CEF000']
 
 // -------------------
 //       Drawing
@@ -27,9 +27,11 @@ function setup() {
 }
 
 function lineOfRectangles(y) {
-	//Les couleurs c ici
+	
+	
 	let x=0
     for (let i = 0; i < lengthOfRectangles.length; ++i) {
+		fill(colors[i]);
         rect(x, y, lengthOfRectangles[i], width/lengthOfRectangles.length);
 		x+=lengthOfRectangles[i];
     }
@@ -41,6 +43,7 @@ function lineOfRectangles(y) {
 function draw() {
 	background(200)
 	for (let i = 0; i < lengthOfRectangles.length; ++i) {
+		fill(colors[i])
 		lineOfRectangles(i * height / lengthOfRectangles.length)
 	}
 }
