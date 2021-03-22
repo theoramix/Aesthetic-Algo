@@ -7,6 +7,7 @@ const params = {
 	Download_Image: () => save(), 
 	randomSeed:0;
 }
+
 gui.add(params, "Download_Image") 
 gui.add(params, "randomSeed",0,100)
 function generate_sizes() { // fonction permettant de normaliser la longueur d'une ligne pour la remplir
@@ -17,7 +18,6 @@ function generate_sizes() { // fonction permettant de normaliser la longueur d'u
 }
 
 let lengthOfRectangles
-
 const colors = ['#B3F734','#6CE03A','#23E047','#0CF77E','#00E0AB','#0CECF7','#350CF7','#B500E0','#F70C3F','#F04601','#E03200','#F76E0C','#F09100','#F7BA0C','#CEF000']
 
 // -------------------
@@ -33,7 +33,7 @@ function lineOfRectangles(y,offset) {
 
     for (let i = 0; i < lengthOfRectangles.length; ++i) {
 		let value=colors[(i+offset+colors.length)%colors.length];
-		noStroke(); //Enlever les bordures des rectangles
+		noStroke(); //Remove the rectangles borders
 		fill(value);
         rect(x, y, lengthOfRectangles[i], width/lengthOfRectangles.length);
 		x+=lengthOfRectangles[i];
@@ -41,16 +41,6 @@ function lineOfRectangles(y,offset) {
 
 	}
 }
-
-/*function mouseClicked(){
-	const color=get(mouseX, mouseY);
-	const index=color.indexOf(new p5.Color(color))
-	console.log(color)
-	if (value == colors[i]) {
-		value = '0,0,0';
-	}
-	else {value = '0,0,0'}
-}*/
 
 // -------------------
 //    Initialization
