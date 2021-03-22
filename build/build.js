@@ -1,3 +1,10 @@
+var gui = new dat.GUI();
+var params = {
+    Download_Image: function () { return save(); },
+    randomSeed: 0
+};
+gui.add(params, "Download_Image");
+gui.add(params, "randomSeed", 0, 100);
 function generate_sizes() {
     var sizes = [100, 300, 500, 1000, 500, 300, 300, 200, 100, 200, 300, 1000, 500, 200, 100];
     var sum = sizes.reduce(function (a, b) { return a + b; }, 0);
@@ -10,19 +17,21 @@ function setup() {
     p6_CreateCanvas();
     lengthOfRectangles = generate_sizes();
 }
-function lineOfRectangles(y) {
+function lineOfRectangles(y, offset) {
     var x = 0;
     for (var i = 0; i < lengthOfRectangles.length; ++i) {
-        fill(colors[i]);
+        var value = colors[(i + offset + colors.length) % colors.length];
+        noStroke();
+        fill(value);
         rect(x, y, lengthOfRectangles[i], width / lengthOfRectangles.length);
         x += lengthOfRectangles[i];
     }
 }
 function draw() {
     background(200);
+    randomSeed(params.randomSeed);
     for (var i = 0; i < lengthOfRectangles.length; ++i) {
-        fill(colors[i]);
-        lineOfRectangles(i * height / lengthOfRectangles.length);
+        lineOfRectangles(i * height / lengthOfRectangles.length, floor(random(lengthOfRectangles.length)));
     }
 }
 function windowResized() {
